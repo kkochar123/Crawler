@@ -43,7 +43,7 @@ public class RetreiveGymDetails {
 	private List<String> fetchRecordsFromDatabase(String city) {
 		MongoDBConnection db = new MongoDBConnection();
 		DBCollection gyms = db.getConn().getCollection("gymnasium");
-		BasicDBObject findQuery = new BasicDBObject("city", new BasicDBObject("$eq",city));
+		BasicDBObject findQuery = new BasicDBObject("city", new BasicDBObject("$eq",city.toLowerCase()));
 		List<String> gymList = new ArrayList<String>();
         DBCursor docs = gyms.find(findQuery);
 

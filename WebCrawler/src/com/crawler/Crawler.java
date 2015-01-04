@@ -20,7 +20,7 @@ import com.database.MongoDBConnection;
 import com.mongodb.BasicDBObject;
 import com.mongodb.DBCollection;
  
-public class CrawlerMongoDB {
+public class Crawler {
  
 	public static MongoDBConnection db = new MongoDBConnection();
 	private static int count = 0;
@@ -121,7 +121,7 @@ public class CrawlerMongoDB {
         gym.put("address", address);
         gym.put("phoneNumber", contactNumber);
         gym.put("website", website);
-        gym.put("city", city);
+        gym.put("city", city.toLowerCase());
         gyms.insert(gym);
 		System.out.println("Record Inserted " + ++count);	
 	}
