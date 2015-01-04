@@ -29,6 +29,8 @@ public class RetreiveGymDetails {
 	public ModelAndView  getGymDetails(@PathVariable String cityName) {
 		List<String> gymLists = new ArrayList<String>();
 		gymLists = fetchRecordsFromDatabase(cityName);
+		if(gymLists == null || gymLists.size() <= 0)
+			gymLists.add("Error while connecting to database. Please try again.");
 		
 		ModelAndView model = new ModelAndView("list");
 		model.addObject("lists", gymLists);
@@ -42,6 +44,8 @@ public class RetreiveGymDetails {
 	}*/
 	private List<String> fetchRecordsFromDatabase(String city) {
 		MongoDBConnection db = new MongoDBConnection();
+		if(db == null || db.getConn() == null )
+			return null;
 		DBCollection gyms = db.getConn().getCollection("gymnasium");
 		BasicDBObject findQuery = new BasicDBObject("city", new BasicDBObject("$eq",city.toLowerCase()));
 		List<String> gymList = new ArrayList<String>();

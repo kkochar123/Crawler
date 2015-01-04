@@ -104,7 +104,7 @@ public class Crawler {
 				address = details.substring(0, details.indexOf(contactNumber));
 			}
 			if(map.containsKey(contactNumber)) 
-				System.out.println("Duplicates");
+				return;
 			else {
 				map.put(contactNumber, website);
 				insertIntoDatabase(name, contactNumber, website, address, city);
